@@ -26,7 +26,7 @@ contract BarTest is Test{
         vm.deal(player, 2 ether);
 
         // Write Exploit here
-
+        
         vm.stopPrank();
         assertEq(challSetup.isSolved(), true);
     }

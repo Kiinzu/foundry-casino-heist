@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-import {Test, console} from "forge-std/Test.sol";
-
 contract Bar{
 
     address public owner;
@@ -31,8 +29,6 @@ contract Bar{
     }
 
     modifier isHuman(){
-        console.log(tx.origin);
-        console.log(msg.sender);
         require(msg.sender == tx.origin, "Only Human Allowed in this Bar!");
         _;
     }

@@ -107,15 +107,12 @@ contract IPWD is ERC20, Ownable{
     }
 
     modifier onContractDetected(address _addr){
-        console.log("Smart Contract Detect: ", isSmartContract(_addr));
         if(_addr != Administrator){
             if(isSmartContract(_addr)){
                 if(!allowAllContracts){
-                    console.log("whitelisted: ", whitelistedAddress[_addr]);
                     require(whitelistedAddress[_addr], "Only Whitelisted is allowed!");
                 }
                 if(allowAllContracts){
-                    console.log("Blacklisted: ", blacklistedAddress[_addr]);
                     require(!blacklistedAddress[_addr], "Blacklisted address is not allowed!");
                 }
             }

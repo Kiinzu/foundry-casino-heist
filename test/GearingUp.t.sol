@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {GearingUp} from "src/Basic/gearing-up/GearingUp.sol";
-import {Setup} from "src/Basic/gearing-up/Setup.sol";
+import {GearingUp} from "src/basic/gearing-up/GearingUp.sol";
+import {Setup} from "src/basic/gearing-up/Setup.sol";
 
 contract GearingUpTest is Test{
     Setup public challSetup;

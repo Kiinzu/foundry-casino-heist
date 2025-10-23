@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Singularity} from "src/Common/singular-identity/Singularity.sol";
-import {Setup} from "src/Common/singular-identity/Setup.sol";
+import {Singularity} from "src/common/singular-identity/Singularity.sol";
+import {Setup} from "src/common/singular-identity/Setup.sol";
 
 contract SingularIdentityTest is Test{
     Setup public challSetup;

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {InjuBank} from "src/Common/inju-bank/InjuBank.sol";
-import {Setup} from "src/Common/inju-bank/Setup.sol";
+import {InjuBank} from "src/common/inju-bank/InjuBank.sol";
+import {Setup} from "src/common/inju-bank/Setup.sol";
 
 contract InjuBankTest is Test{
     Setup public challSetup;

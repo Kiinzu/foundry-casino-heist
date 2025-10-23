@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Capitol} from "src/Common/cheap-glitch/Capitol.sol";
-import {Setup} from "src/Common/cheap-glitch/Setup.sol";
+import {Capitol} from "src/common/cheap-glitch/Capitol.sol";
+import {Setup} from "src/common/cheap-glitch/Setup.sol";
 
 contract CheapGlitchTest is Test{
     Setup public challSetup;

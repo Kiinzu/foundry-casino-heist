@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {VVVIP} from "src/Common/vvvip-member/VVVIP.sol";
-import {Setup} from "src/Common/vvvip-member/Setup.sol";
+import {VVVIP} from "src/common/vvvip-member/VVVIP.sol";
+import {Setup} from "src/common/vvvip-member/Setup.sol";
 
 
 contract VVVIPMemberTest is Test{

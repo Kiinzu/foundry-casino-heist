@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Briefing} from "src/Basic/briefing/Briefing.sol";
-import {Setup} from "src/Basic/briefing/Setup.sol";
+import {Briefing} from "src/basic/briefing/Briefing.sol";
+import {Setup} from "src/basic/briefing/Setup.sol";
 
 contract BriefingTest is Test{
     Setup public challSetup;

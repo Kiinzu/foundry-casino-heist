@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Roulette} from "src/Common/roulette/Roulette.sol";
-import {Setup} from "src/Common/roulette/Setup.sol";
+import {Roulette} from "src/common/roulette/Roulette.sol";
+import {Setup} from "src/common/roulette/Setup.sol";
 
 contract RouletteTest is Test{
     Setup public challSetup;

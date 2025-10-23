@@ -4,6 +4,8 @@
 
 A Collection of Casino Heist's Challenges written in Foundry- Perfect for those who doesn't want to deploy anything and want to exercise their Test Writting skill in Foundry.
 
+You can find the reading material in our website at [Casino Heist](https://casinoheist.enuma-labs.xyz).
+
 ## Requirement
 What you need to prepare:
 1. [Foundry](https://book.getfoundry.sh/) 

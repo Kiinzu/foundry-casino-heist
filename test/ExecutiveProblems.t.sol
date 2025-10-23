@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Crain} from "src/VIP/executive-problems/Crain.sol";
-import {CrainExecutive} from "src/VIP/executive-problems/CrainExecutive.sol";
-import {Setup} from "src/VIP/executive-problems/Setup.sol";
+import {Crain} from "src/vip/executive-problems/Crain.sol";
+import {CrainExecutive} from "src/vip/executive-problems/CrainExecutive.sol";
+import {Setup} from "src/vip/executive-problems/Setup.sol";
 
 contract ExecutiveProblemsTest is Test{
     Setup public challSetup;

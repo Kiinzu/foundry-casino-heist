@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {InjuBank} from "src/VIP/casino-bankbuster/InjuBank.sol";
-import {InjuCasino} from "src/VIP/casino-bankbuster/InjuCasino.sol";
-import {Setup} from "src/VIP/casino-bankbuster/Setup.sol";
+import {InjuBank} from "src/advance/casino-bankbuster/InjuBank.sol";
+import {InjuCasino} from "src/advance/casino-bankbuster/InjuCasino.sol";
+import {Setup} from "src/advance/casino-bankbuster/Setup.sol";
 
 contract CasinoBankbusterTest is Test{
     Setup public challSetup;

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {CasinoVault} from "src/Common/casino-vault/CasinoVault.sol";
-import {Setup} from "src/Common/casino-vault/Setup.sol";
+import {CasinoVault} from "src/common/casino-vault/CasinoVault.sol";
+import {Setup} from "src/common/casino-vault/Setup.sol";
 
 contract CasinoVaultTest is Test{
     Setup public challSetup;

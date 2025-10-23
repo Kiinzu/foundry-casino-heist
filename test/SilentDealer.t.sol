@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Dealer} from "src/Common/silent-dealer/Dealer.sol";
-import {Setup} from "src/Common/silent-dealer/Setup.sol";
+import {Dealer} from "src/common/silent-dealer/Dealer.sol";
+import {Setup} from "src/common/silent-dealer/Setup.sol";
 
 contract SilentDealerTest is Test{
     Setup public challSetup;

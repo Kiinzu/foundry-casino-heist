@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Manager} from "src/VIP/pupol-nft/Manager.sol";
-import {PupolMain} from "src/VIP/pupol-nft/PupolMain.sol";
-import {Setup} from "src/VIP/pupol-nft/Setup.sol";
+import {Manager} from "src/vip/pupol-nft/Manager.sol";
+import {PupolMain} from "src/vip/pupol-nft/PupolMain.sol";
+import {Setup} from "src/vip/pupol-nft/Setup.sol";
 
 contract PupolTest is Test{
     Setup public challSetup;

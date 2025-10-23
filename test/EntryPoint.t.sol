@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {EntryPoint} from "src/Common/entry-point/EntryPoint.sol";
-import {Setup} from "src/Common/entry-point/Setup.sol";
+import {EntryPoint} from "src/common/entry-point/EntryPoint.sol";
+import {Setup} from "src/common/entry-point/Setup.sol";
 
 contract EntryPointTest is Test{
     Setup public challSetup;

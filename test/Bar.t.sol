@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Bar} from "src/Common/bar/Bar.sol";
-import {Setup} from "src/Common/bar/Setup.sol";
+import {Bar} from "src/common/bar/Bar.sol";
+import {Setup} from "src/common/bar/Setup.sol";
 
 contract BarTest is Test{
     Setup public challSetup;

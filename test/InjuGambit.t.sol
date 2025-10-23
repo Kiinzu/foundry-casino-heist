@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {ChallengeManager} from "src/VIP/inju-s-gambit/ChallengeManager.sol";
-import {Privileged} from "src/VIP/inju-s-gambit/Privileged.sol";
-import {Setup} from "src/VIP/inju-s-gambit/Setup.sol";
+import {ChallengeManager} from "src/vip/inju-s-gambit/ChallengeManager.sol";
+import {Privileged} from "src/vip/inju-s-gambit/Privileged.sol";
+import {Setup} from "src/vip/inju-s-gambit/Setup.sol";
 
 contract InjusGambitTest is Test{
     Setup public challSetup;

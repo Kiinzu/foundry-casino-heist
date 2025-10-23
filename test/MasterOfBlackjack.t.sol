@@ -2,8 +2,8 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Blackjack} from "src/Common/master-of-blackjack/Blackjack.sol";
-import {Setup} from "src/Common/master-of-blackjack/Setup.sol";
+import {Blackjack} from "src/common/master-of-blackjack/Blackjack.sol";
+import {Setup} from "src/common/master-of-blackjack/Setup.sol";
 
 contract MasterOfBlackjackTest is Test{
     Setup public challSetup;

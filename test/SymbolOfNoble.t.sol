@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Noble} from "src/Common/symbol-of-noble/Noble.sol";
-import {Administrator} from "src/Common/symbol-of-noble/Administrator.sol";
-import {Setup} from "src/Common/symbol-of-noble/Setup.sol";
+import {Noble} from "src/common/symbol-of-noble/Noble.sol";
+import {Administrator} from "src/common/symbol-of-noble/Administrator.sol";
+import {Setup} from "src/common/symbol-of-noble/Setup.sol";
 
 contract SymboleOfNobleTest is Test{
     Setup public challSetup;

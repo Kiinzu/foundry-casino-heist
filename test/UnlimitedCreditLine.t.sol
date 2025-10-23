@@ -2,9 +2,9 @@
 pragma solidity ^0.8.28;
 
 import {Test, console} from "forge-std/Test.sol";
-import {IBetterERC20} from "src/Common/unlimited-credit-line/BetterERC20.sol";
-import {NewBank} from "src/Common/unlimited-credit-line/NewBank.sol";
-import {Setup} from "src/Common/unlimited-credit-line/Setup.sol";
+import {IBetterERC20} from "src/common/unlimited-credit-line/BetterERC20.sol";
+import {NewBank} from "src/common/unlimited-credit-line/NewBank.sol";
+import {Setup} from "src/common/unlimited-credit-line/Setup.sol";
 
 contract UnlimitedCreditLineTest is Test{
     Setup public challSetup;

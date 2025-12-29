@@ -7,4 +7,12 @@ remappings = [
     "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/"
 ] 
 
+# Shanghai profile
+[profile.shanghai]
+evm_version = "shanghai"
+
+# Prague profile
+[profile.prague]
+evm_version = "prague"
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

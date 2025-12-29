@@ -7,33 +7,39 @@ A Collection of Casino Heist's Challenges written in Foundry- Perfect for those 
 You can find the reading material in our website at [Casino Heist](https://casinoheist.enuma-labs.xyz).
 
 ## Requirement
+
 What you need to prepare:
-1. [Foundry](https://book.getfoundry.sh/) 
+
+1. [Foundry](https://book.getfoundry.sh/)
 2. Snacks 🍫🍪
 
 All the libraries such as [Openzepplin Contracts](https://docs.openzeppelin.com/upgrades-plugins/foundry-upgrades) is already included in the GitHub Repository.
 
 ## Mini-Guide
+
 This is the directory and its usage.
 
 - `/src` - all vulnerable contracts here.
-- `/test` - all testfile 
-- `/reading-mats/docs` - all vulnerabilities Explanation
-- `/reading-mats/Mithrough` - all Mitigations & Walkthroughs
+- `/test` - all test files
+- `/reading-mats/docs` - all vulnerabilities Explanation (Archived Version from CasinoHeist.v0)
+- `/reading-mats/Mithrough` - all Mitigations & Walkthroughs (Archived Version from CasinoHeist.v0)
 
 ## How to Play
+
 1. Clone the Repository
+
 ```shell
 git clone https://github.com/Kiinzu/foundry-casino-heist.git
 ```
 
 2. You will find the Challenge in the `/src` accordingly to their Category.
-    - Basic (Introductory)
-    - Common (Common Vulnerabilities)
-    - VIP (Easier Stuff, trust me)
 
+   - Basic (Introductory)
+   - Common (Common Vulnerabilities)
+   - VIP (Easier Stuff, trust me)
 3. You will find all the test in one folder `/test` (Basic, Common, VIP in one place).
 4. Some might require you to write Exploit Contract, some you can just edit the Test Directly. There will be `// Write Exploit Here`, that's the only place you should edit and some may include `vm.warp()`, you might also want to change this if you think you need it.
+
 ```solidity
 // Example: test/MasterOfBlackjack.t.sol
     function testIfSolved() public {
@@ -48,10 +54,18 @@ git clone https://github.com/Kiinzu/foundry-casino-heist.git
         assertEq(challSetup.isSolved(), true);
     }
 ```
+
 ⚠️ - **Do Not Change the Setup for player!**
 
-5. To Test if solved, you can simply run this command
+5. To Test if the challenge is solved, simply run `make` 
+
 ```shell
-forge test test/MasterOfBlackjack.t.sol -vvvv
+// Example for vip_bank-of-people
+make vip_bank-of-people
+
+// OR
+// Example for all challenge test
+make test-all
 ```
-6. That's it! You good to go.
+
+7. That's it! You good to go.

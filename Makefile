@@ -12,6 +12,7 @@ TEST_TARGETS := \
 	common_silent-dealer \
 	common_singular-identity \
 	common_symbol-of-noble \
+	common_take-my-money\
 	common_unlimited-credit-line \
 	common_voting-frenzy \
 	common_vvvip-member \
@@ -80,6 +81,9 @@ common_singular-identity:
 
 common_symbol-of-noble:
 	forge test --mp test/SymbolOfNoble.t.sol $(TEST_ARGS)
+
+common_take-my-money:
+	FOUNDRY_PROFILE=shanghai forge test --mp test/TakeMyMoney.t.sol $(TEST_ARGS)
 
 common_unlimited-credit-line:
 	forge test --mp test/UnlimitedCreditLine.t.sol $(TEST_ARGS)

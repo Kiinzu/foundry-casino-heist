@@ -6,7 +6,7 @@ import "src/common/gorengan/GorenganToken.sol";
 import "src/common/gorengan/GorenganVault.sol";
 import "src/common/gorengan/Setup.sol";
 
-contract BOPTest is Test{
+contract GorenganTest is Test{
     Setup public challSetup;
     GorenganToken public token;
     GorenganVault public vault;

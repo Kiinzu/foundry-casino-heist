@@ -8,7 +8,7 @@ import {IPWDAdministrator} from "src/vip/ipwd/IPWDAdministrator.sol";
 import {Validator} from "src/vip/ipwd/Validator.sol";
 import {ValidatorInterface} from "src/vip/ipwd/ValidatorInterface.sol";
 
-contract IPWDSecurityTest is Test{
+contract IPWDTest is Test{
     Setup public challSetup;
     IPWD public ipwd;
     IPWDAdministrator public ipwdAdmin;

@@ -5,6 +5,7 @@ TEST_TARGETS := \
 	common_casino-vault \
 	common_cheap-glitch \
 	common_entry-point \
+	common_gorengan \
 	common_inju-bank \
 	common_master-of-blackjack \
 	common_roulette \
@@ -58,6 +59,9 @@ common_cheap-glitch:
 
 common_entry-point:
 	forge test --mp test/EntryPoint.t.sol $(TEST_ARGS)
+
+common_gorengan:
+	forge test --mp test/Gorengan.t.sol ${TEST_ARGS}
 
 common_inju-bank:
 	forge test --mp test/InjuBank.t.sol $(TEST_ARGS)

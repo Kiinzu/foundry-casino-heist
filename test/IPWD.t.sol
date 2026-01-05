@@ -26,14 +26,19 @@ contract IPWDTest is Test{
         vm.startPrank(deployer);
         vm.deal(deployer, 3000 ether);
 
-        // Storage variables, try to fetch it from the contract storage 
-        // instead of copy-paste it from this source.
+        // Referral Generator
+        bytes32 REF1 = vm.envBytes32("REF1");
+        bytes32 REF2 = vm.envBytes32("REF2");
+        bytes32 REF3 = vm.envBytes32("REF3");
+        bytes32 REF4 = vm.envBytes32("REF4");
+        bytes32 REF5 = vm.envBytes32("REF5");
+
         referralCodes = [
-            keccak256(abi.encodePacked("code1")),
-            keccak256(abi.encodePacked("code2")),
-            keccak256(abi.encodePacked("code3")),
-            keccak256(abi.encodePacked("code4")),
-            keccak256(abi.encodePacked("code5"))
+            REF1,
+            REF2,
+            REF3,
+            REF4,
+            REF5
         ];
         challSetup = new Setup{value: 2000 ether}(referralCodes);
         ipwd = challSetup.ipwd();
@@ -44,8 +49,8 @@ contract IPWDTest is Test{
         vm.stopPrank();
     }
 
-    function test_forActualExploitForSecureIPWD() public{
-        // Setup for Player, set msg.sender and tx.origin to player to prevent confusion
+    function test_testIfSolved() public{
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player, player);
         vm.deal(player, 2.2 ether);
 

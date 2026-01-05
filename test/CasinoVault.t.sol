@@ -20,13 +20,15 @@ contract CasinoVaultTest is Test{
         vm.stopPrank();
     }
 
-    function testIfSolved() public {
-        // Setup for player
+    function testIfSolved() public {        
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player, player);
         vm.deal(player, 1 ether);
 
         // Write Exploit here
 
+
+        vm.stopPrank();
         assertEq(challSetup.isSolved(), true);
     }
 

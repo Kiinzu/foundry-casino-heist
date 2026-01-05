@@ -21,7 +21,7 @@ contract MasterOfBlackjackTest is Test{
     }
 
     function testIfSolved() public {
-        // Setup for Player
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player, player);
         vm.deal(player, 1 ether);
 

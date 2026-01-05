@@ -1,5 +1,6 @@
 TEST_TARGETS := \
 	basic_briefing \
+	basic_bulls-eye \
 	basic_gearing-up \
 	common_bar \
 	common_casino-vault \
@@ -43,10 +44,19 @@ test-all:
 
 # Basic
 basic_briefing:
-	forge test --mp test/Briefing.t.sol $(TEST_ARGS)
+	SECRET_PHRASE=0x$$(openssl rand -hex 32) forge test --mp test/Briefing.t.sol $(TEST_ARGS)
+
+basic_bulls-eye:
+	forge test --mp test/BullsEye.t.sol $(TEST_ARGS)
 
 basic_gearing-up:
 	forge test --mp test/GearingUp.t.sol $(TEST_ARGS)
+
+basic_peek-a-slot:
+	SEED=0x$$(openssl rand -hex 32) \
+	DARRAY=0x$$(openssl rand -hex 32) \
+	TDARRAY=0x$$(openssl rand -hex 32) \
+	forge test --mp test/PeekASlot.t.sol $(TEST_ARGS)
 
 # Common
 common_bar:
@@ -112,6 +122,11 @@ vip_inju-gambit:
 	forge test --mp test/InjuGambit.t.sol $(TEST_ARGS)
 
 vip_ipwd:
+	REF1=0x$$(openssl rand -hex 32) \
+	REF2=0x$$(openssl rand -hex 32) \
+	REF3=0x$$(openssl rand -hex 32) \
+	REF4=0x$$(openssl rand -hex 32) \
+	REF5=0x$$(openssl rand -hex 32) \
 	forge test --mp test/IPWD.t.sol $(TEST_ARGS)
 
 vip_pupol-nft:

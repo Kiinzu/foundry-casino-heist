@@ -25,7 +25,7 @@ contract HopeTest is Test{
     }
 
     function testIfSolved() public {
-        // Setup for Player, set msg.sender and tx.origin to player to prevent confusion
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player);
         vm.deal(player, 1 ether);
 

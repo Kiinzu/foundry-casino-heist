@@ -15,13 +15,14 @@ contract BriefingTest is Test{
     function setUp() public{
         vm.startPrank(deployer);
         vm.deal(deployer, 10 ether);
-        challSetup = new Setup(0x4e6f77596f754b6e6f7753746f7261676549734e6f7454686174536166652e2e);
+        bytes32 secretPhrase = vm.envBytes32("SECRET_PHRASE");
+        challSetup = new Setup(secretPhrase);
         briefing = challSetup.brief();
         vm.stopPrank();
     }
 
     function testIfSolved() public{
-        // Setup for Player
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player, player);
         vm.deal(player, 7 ether);
 

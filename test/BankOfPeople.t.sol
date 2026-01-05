@@ -21,7 +21,7 @@ contract BOPTest is Test{
     }
 
     function testIfSolved() public {
-        // Setup for Player, set msg.sender and tx.origin to player to prevent confusion
+        // Setup for Player, set msg.sender and tx.origin to player
         vm.startPrank(player.addr, player.addr);
         vm.deal(player.addr, 100 ether);
 

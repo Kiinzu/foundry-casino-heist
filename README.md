@@ -62,11 +62,11 @@ forge install
 5. To Test if the challenge is solved, simply run `make` 
 
 ```shell
-// Example for vip_bank-of-people
+# Example for vip_bank-of-people
 make vip_bank-of-people
 
-// OR
-// Example for all challenge test
+# OR
+# Example for all challenge test
 make test-all
 ```
 

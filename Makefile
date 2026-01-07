@@ -2,6 +2,8 @@ TEST_TARGETS := \
 	basic_briefing \
 	basic_bulls-eye \
 	basic_gearing-up \
+	basic_isolated \
+	basic_peek-a-slot \
 	common_bar \
 	common_casino-vault \
 	common_cheap-glitch \
@@ -52,6 +54,9 @@ basic_bulls-eye:
 
 basic_gearing-up:
 	forge test --mp test/GearingUp.t.sol $(TEST_ARGS)
+
+basic_isolated:
+	forge test --mp test/Isolated.t.sol $(TEST_ARGS)
 
 basic_peek-a-slot:
 	SEED=0x$$(openssl rand -hex 32) \

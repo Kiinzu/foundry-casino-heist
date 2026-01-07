@@ -22,6 +22,7 @@ TEST_TARGETS := \
 	advance_casino-bankbuster \
 	advance_double-dipping \
 	advance_false-hope \
+	advance_the-waltz \
 	vip_bank-of-people \
 	vip_executive-problems \
 	vip_inju-gambit \
@@ -119,6 +120,9 @@ advance_double-dipping:
 
 advance_false-hope:
 	forge test --mp test/FalseHope.t.sol $(TEST_ARGS)
+
+advance_the-waltz:
+	forge test --mp test/TheWaltz.t.sol ${TEST_ARGS}
 
 # VIP
 vip_bank-of-people:

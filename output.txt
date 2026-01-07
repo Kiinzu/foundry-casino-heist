@@ -1,0 +1,50 @@
+forge test --mp test/TheWaltz.t.sol --mt testIfSolved -vvv
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 489.49ms
+Compiler run successful!
+
+Ran 1 test for test/TheWaltz.t.sol:TheWaltzTest
+[PASS] testIfSolved() (gas: 1829176)
+Logs:
+  ======== INITIAL ========
+  Setup Address:  0x8Ad159a275AEE56fb2334DBb69036E9c7baCEe9b
+  ParticipantManager Address:  0x0d5C87e3905Da4B351d605a0d89953aF60eF667a
+  BonusDistributor Address:  0x1881CDFa01B383C24b6051283F9983da60a621AF
+  BonusDistributor Balance:  5 ether
+  
+  ======== EXPLOITING ========
+  Exploit 1:  0xce110ab5927CC46905460D930CCa0c6fB4666219
+  Exploit 2:  0x9DCE2820aFea3c3E1f6010Db7533C4DD0d9B6a6B
+  
+  ======== EXPLOIT 1 INFORMATION ========
+  Attacker 1
+  0xce110ab5927CC46905460D930CCa0c6fB4666219 1 0
+  
+  ======== EXPLOIT 2 INFORMATION ========
+  Attacker 2
+  0x9DCE2820aFea3c3E1f6010Db7533C4DD0d9B6a6B 1 0
+  E1 Received, BD Balance:  4000000000000000000
+  Contacting E2, ----
+  E2 Received, BD Balance:  4000000000000000000
+  Contacting E1, ----
+  E1 Received, BD Balance:  4000000000000000000
+  E1 Received, BD Balance:  3000000000000000000
+  Contacting E2, ----
+  E2 Received, BD Balance:  3000000000000000000
+  Contacting E1, ----
+  E1 Received, BD Balance:  3000000000000000000
+  E1 Received, BD Balance:  2000000000000000000
+  Contacting E2, ----
+  E2 Received, BD Balance:  2000000000000000000
+  Contacting E1, ----
+  E1 Received, BD Balance:  2000000000000000000
+  E1 Received, BD Balance:  1000000000000000000
+  Contacting E2, ----
+  E2 Received, BD Balance:  1000000000000000000
+  Contacting E1, ----
+  E1 Received, BD Balance:  1000000000000000000
+  E1 Received, BD Balance:  0
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 4.28ms (1.30ms CPU time)
+
+Ran 1 test suite in 133.33ms (4.28ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)

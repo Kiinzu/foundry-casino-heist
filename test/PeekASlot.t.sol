@@ -15,12 +15,11 @@ contract PeekASlotTest is Test{
         bytes32 dArrayValue = vm.envBytes32("DARRAY");
         bytes32 tdArrayValue = vm.envBytes32("TDARRAY");
         console.logBytes32(seed);
-        // 1d array
+
         bytes32[] memory dArray = new bytes32[](5);
         dArray[4] = dArrayValue;
         console.logBytes32(dArray[4]);
 
-        // 2d array
         bytes32[][] memory tdArray = new bytes32[][](3);
         tdArray[2] = new bytes32[](4);
         tdArray[2][3] = tdArrayValue;

@@ -121,6 +121,9 @@ advance_double-dipping:
 advance_false-hope:
 	forge test --mp test/FalseHope.t.sol $(TEST_ARGS)
 
+advance_guardian:
+	FOUNDRY_PROFILE=prague forge test --mp test/Guardian.t.sol ${TEST_ARGS}
+
 advance_the-waltz:
 	forge test --mp test/TheWaltz.t.sol ${TEST_ARGS}
 

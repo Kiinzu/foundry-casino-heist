@@ -9,7 +9,7 @@ contract Setup{
     Isolation isolated3;
 
     constructor() {
-        isolated = new Isolation(); // 1
+        isolated = new Isolation();
         for (uint i=0; i<126; i++){ 
             new Isolation();  
         } 

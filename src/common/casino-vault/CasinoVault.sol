@@ -2,7 +2,6 @@
 pragma solidity ^0.8.26;
 
 contract CasinoVault {
-    address public gameLogic;
     address public owner;
 
     constructor() payable {

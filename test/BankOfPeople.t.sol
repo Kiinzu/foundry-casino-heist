@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.29;
+pragma solidity ^0.8.29;
 
 import "forge-std/Test.sol";
 import "src/vip/bank-of-people/BankOfPeople.sol";

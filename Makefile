@@ -18,6 +18,7 @@ TEST_TARGETS := \
 	common_voting-frenzy \
 	common_vvvip-member \
 	advance_casino-bankbuster \
+	advance_double-dipping \
 	advance_false-hope \
 	vip_bank-of-people \
 	vip_executive-problems \
@@ -107,6 +108,9 @@ common_vvvip-member:
 # Advance
 advance_casino-bankbuster:
 	forge test --mp test/CasinoBankbuster.t.sol $(TEST_ARGS)
+
+advance_double-dipping:
+	forge test --mp test/DoubleDipping.t.sol $(TEST_ARGS)
 
 advance_false-hope:
 	forge test --mp test/FalseHope.t.sol $(TEST_ARGS)

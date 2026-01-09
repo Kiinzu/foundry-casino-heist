@@ -4,6 +4,7 @@ TEST_TARGETS := \
 	basic_gearing-up \
 	basic_isolated \
 	basic_peek-a-slot \
+	common_after-you \
 	common_bar \
 	common_casino-vault \
 	common_cheap-glitch \
@@ -37,8 +38,14 @@ HELPER := \
 	_ensure_dirs \
 	_anvil_start \
 	_anvil_stop \
-	_script_solver 
-	
+	anvil_mine \
+	anvil_tx_content \
+	anvil_tx_inspect \
+	anvil_tx_status \
+	anvil_tx_summary \
+	_script_solver \
+	anvil_stop  
+
 # Default: Verbose Forge test
 VERBOSE ?= 1
 
@@ -106,7 +113,7 @@ _anvil_start: _ensure_dirs
 		if cast chain-id --rpc-url $(RPC_URL) >/dev/null 2>&1; then \
 			echo "[!] Anvil ready (pid=$$(cat $(ANVIL_PID)))"; \
 			if [ "$(MANUAL_MINING)" = "true" ]; then \
-				echo "[!] Manual mining enabled. Use 'cast rpc anvil_mine' to mine blocks"; \
+				echo "[!] Manual mining enabled. Use 'make anvil_mine' to mine blocks"; \
 			fi; \
 			exit 0; \
 		fi; \
@@ -127,8 +134,110 @@ _anvil_stop:
 	fi
 	@-lsof -ti tcp:$(ANVIL_PORT) 2>/dev/null | xargs kill 2>/dev/null || true
 	@-pkill anvil 2>/dev/null || true
-	@rm -f $(ANVIL_LOG)
+	@rm -rf $(ANVIL_DIR)/*
 	@echo "[o] Anvil stopped."
+
+anvil_stop:
+	@echo "[!] Stopping Anvil..."
+	@if [ -f "$(ANVIL_PID)" ]; then \
+		if kill -0 $$(cat $(ANVIL_PID)) 2>/dev/null; then \
+			echo "[!] Killing Anvil (pid=$$(cat $(ANVIL_PID)))..."; \
+			kill $$(cat $(ANVIL_PID)) 2>/dev/null || true; \
+		fi; \
+		rm -f $(ANVIL_PID); \
+	fi
+	@-lsof -ti tcp:$(ANVIL_PORT) 2>/dev/null | xargs kill 2>/dev/null || true
+	@-pkill anvil 2>/dev/null || true
+	@rm -f $(ANVIL_DIR)/*
+	@rm -f $()
+	@echo "[o] Anvil stopped."
+
+anvil_mine:
+	@echo "[!] Mining a Block..."
+	@cast rpc evm_mine --rpc-url $(RPC_URL)
+
+anvil_tx_status:
+	@echo "════════════════════════════════════════"
+	@echo "         MEMPOOL STATUS"
+	@echo "════════════════════════════════════════"
+	@RESULT=$$(cast rpc txpool_status --rpc-url $(RPC_URL)); \
+	PENDING=$$(echo "$$RESULT" | jq -r '.pending'); \
+	QUEUED=$$(echo "$$RESULT" | jq -r '.queued'); \
+	PENDING_DEC=$$(cast to-dec $$PENDING 2>/dev/null || echo "$$PENDING"); \
+	QUEUED_DEC=$$(cast to-dec $$QUEUED 2>/dev/null || echo "$$QUEUED"); \
+	echo "Pending: $$PENDING_DEC"; \
+	echo "Queued:  $$QUEUED_DEC"
+	@echo "════════════════════════════════════════"
+
+anvil_tx_inspect:
+	@echo "════════════════════════════════════════"
+	@echo "       MEMPOOL TRANSACTIONS"
+	@echo "════════════════════════════════════════"
+	@RESULT=$$(cast rpc txpool_inspect --rpc-url $(RPC_URL)); \
+	PENDING=$$(echo "$$RESULT" | jq -r '.pending | to_entries | length'); \
+	QUEUED=$$(echo "$$RESULT" | jq -r '.queued | to_entries | length'); \
+	if [ "$$PENDING" -eq 0 ] && [ "$$QUEUED" -eq 0 ]; then \
+		echo "No transactions in mempool"; \
+	else \
+		if [ "$$PENDING" -gt 0 ]; then \
+			echo ""; \
+			echo "📤 PENDING TRANSACTIONS ($$PENDING):"; \
+			echo "$$RESULT" | jq -r '.pending | to_entries[] | "  From: \(.key)\n  " + (.value | to_entries[] | "  [Nonce \(.key)] \(.value)")' | sed 's/^/  /'; \
+		fi; \
+		if [ "$$QUEUED" -gt 0 ]; then \
+			echo ""; \
+			echo "⏸️  QUEUED TRANSACTIONS ($$QUEUED):"; \
+			echo "$$RESULT" | jq -r '.queued | to_entries[] | "  From: \(.key)\n  " + (.value | to_entries[] | "  [Nonce \(.key)] \(.value)")' | sed 's/^/  /'; \
+		fi; \
+	fi
+	@echo ""
+	@echo "════════════════════════════════════════"
+
+anvil_tx_content:
+	@echo "════════════════════════════════════════"
+	@echo "     DETAILED MEMPOOL CONTENT"
+	@echo "════════════════════════════════════════"
+	@RESULT=$$(cast rpc txpool_content --rpc-url $(RPC_URL)); \
+	PENDING=$$(echo "$$RESULT" | jq -r '.pending | to_entries | length'); \
+	QUEUED=$$(echo "$$RESULT" | jq -r '.queued | to_entries | length'); \
+	if [ "$$PENDING" -eq 0 ] && [ "$$QUEUED" -eq 0 ]; then \
+		echo "No transactions in mempool"; \
+	else \
+		if [ "$$PENDING" -gt 0 ]; then \
+			echo ""; \
+			echo "📤 PENDING TRANSACTIONS:"; \
+			echo "$$RESULT" | jq -r '.pending | to_entries[] | "\n  👤 From: \(.key)" + (.value | to_entries[] | "\n    📝 Nonce: \(.key)\n    📋 Hash: \(.value.hash)\n    📍 To: \(.value.to)\n    💰 Value: \(.value.value)\n    ⛽ Gas: \(.value.gas)\n    💸 Gas Price: \(.value.gasPrice // .value.maxFeePerGas)\n    🔢 Type: \(.value.type)\n    📦 Input: \(.value.input[:66])...\n")'; \
+		fi; \
+		if [ "$$QUEUED" -gt 0 ]; then \
+			echo ""; \
+			echo "⏸️  QUEUED TRANSACTIONS:"; \
+			echo "$$RESULT" | jq -r '.queued | to_entries[] | "\n  👤 From: \(.key)" + (.value | to_entries[] | "\n    📝 Nonce: \(.key)\n    📋 Hash: \(.value.hash)\n    📍 To: \(.value.to)\n    💰 Value: \(.value.value)\n    ⛽ Gas: \(.value.gas)\n    💸 Gas Price: \(.value.gasPrice // .value.maxFeePerGas)\n    🔢 Type: \(.value.type)\n    📦 Input: \(.value.input[:66])...\n")'; \
+		fi; \
+	fi
+	@echo ""
+	@echo "════════════════════════════════════════"
+
+anvil_tx_summary:
+	@echo "════════════════════════════════════════"
+	@echo "       MEMPOOL SUMMARY"
+	@echo "════════════════════════════════════════"
+	@RESULT=$$(cast rpc txpool_inspect --rpc-url $(RPC_URL)); \
+	PENDING=$$(echo "$$RESULT" | jq -r '.pending | to_entries | length'); \
+	QUEUED=$$(echo "$$RESULT" | jq -r '.queued | to_entries | length'); \
+	TOTAL=$$((PENDING + QUEUED)); \
+	echo "Total Transactions: $$TOTAL"; \
+	echo "  └─ Pending: $$PENDING"; \
+	echo "  └─ Queued:  $$QUEUED"; \
+	if [ "$$PENDING" -gt 0 ]; then \
+		echo ""; \
+		echo "Pending by sender:"; \
+		echo "$$RESULT" | jq -r '.pending | to_entries[] | "  • \(.key): \(.value | length) tx(s)"'; \
+		echo ""; \
+		echo "Gas prices (pending):"; \
+		CONTENT=$$(cast rpc txpool_content --rpc-url $(RPC_URL)); \
+		echo "$$CONTENT" | jq -r '.pending | to_entries[] | .value | to_entries[] | .value | "  • \(.from[:10])... → \(.to[:10])... : \((.maxFeePerGas // .gasPrice | tonumber / 1000000000)) gwei"' | sort -t: -k2 -rn; \
+	fi
+	@echo "════════════════════════════════════════"
 
 _script_solver:
 	@if [ -z "$(CHALLENGE)" ]; then \
@@ -153,6 +262,10 @@ _script_solver:
 solve_advance_salt-and-steel: CHALLENGE=salt-and-steel
 solve_advance_salt-and-steel: _script_solver
 
+solve_common_after-you: CHALLENGE=after-you
+solve_common_after-you: anvil_tx_summary anvil_mine
+solve_common_after-you: _script_solver
+
 # ----- Basic Challenge -----
 basic_briefing:
 	SECRET_PHRASE=0x$$(openssl rand -hex 32) \
@@ -174,6 +287,37 @@ basic_peek-a-slot:
 	forge test --mp test/PeekASlot.t.sol $(TEST_ARGS)
 
 # ---- Common Challenge -----
+common_after-you: MANUAL_MINING=true
+common_after-you: _anvil_start
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_common_after-you' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@echo "[*] Running Deploy script (mining in 2 seconds)..."
+	@(sleep 10 && $(MAKE) anvil_mine) & \
+	forge script script/after-you/Deploy.s.sol:DeployScript \
+		--rpc-url $(RPC_URL) \
+		--broadcast \
+		|| (echo "[-] Deployment Failed" && $(MAKE) _anvil_stop && exit 1)
+	@echo "[*] Running Alice script..."
+	@SETUP=0x5FbDB2315678afecb367f032d93F642f64180aa3 \
+	EXPRESS=$$(cast call 0x5FbDB2315678afecb367f032d93F642f64180aa3 "express()(address)" --rpc-url "$(RPC_URL)"); \
+	echo "[*] Express: $$EXPRESS"; \
+	echo "[*] Sending Alice's transaction to mempool (10gwei)..."; \
+	cast send $$EXPRESS "celebrate(string,uint8)" 'Happy Birthday Bob!' 79 \
+		--rpc-url $(RPC_URL) \
+		--private-key 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a \
+		--gas-price 10gwei \
+		--async; \
+	echo "[✓] Alice's tx in mempool. Now send your attack (100gwei) then 'make anvil_mine'"
+	@echo "════════════════════════════════════════"
+	@echo "         STEP TO FINISH LAB"
+	@echo "════════════════════════════════════════"
+	@echo "  1. Create your transaction "
+	@echo "     - You can either use script or cast"
+	@echo "  2. After you sent your transaction"
+	@echo '     call "make solve_common_after-you"'
+
+
 common_bar:
 	forge test --mp test/Bar.t.sol $(TEST_ARGS)
 
@@ -236,8 +380,9 @@ advance_guardian:
 
 advance_salt-and-steel: ANVIL_HARDFORK=shanghai
 advance_salt-and-steel: _anvil_start
-	@echo "[*] Anvil is running on $(RPC_URL) with Shanghai hardfork"
-	@echo "[*] Use 'make solve_advance_salt-and-steel' to stop Anvil when done"
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_advance_salt-and-steel' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
 	@forge script script/salt-and-steel/Deploy.s.sol:DeployScript \
 		--rpc-url ${RPC_URL} \
 		--broadcast \

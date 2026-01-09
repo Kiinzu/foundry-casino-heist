@@ -6,6 +6,10 @@ remappings = [
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
     "openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/"
 ]
+fs_permissions = [
+    { access = "read-write", path = ".anvil" },
+    { access = "read-write", path = "./broadcast" }
+]
 
 # Shanghai profile
 [profile.shanghai]

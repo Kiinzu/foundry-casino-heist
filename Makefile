@@ -235,7 +235,15 @@ anvil_tx_summary:
 		echo ""; \
 		echo "Gas prices (pending):"; \
 		CONTENT=$$(cast rpc txpool_content --rpc-url $(RPC_URL)); \
-		echo "$$CONTENT" | jq -r '.pending | to_entries[] | .value | to_entries[] | .value | "  • \(.from[:10])... → \(.to[:10])... : \((.maxFeePerGas // .gasPrice | tonumber / 1000000000)) gwei"' | sort -t: -k2 -rn; \
+		echo "$$CONTENT" | jq -r '.pending | to_entries[] | .value | to_entries[] | .value | "  • \(.from[:10])... → \(.to[:10])... : \(.maxFeePerGas // .gasPrice)"' | while read line; do \
+			addr=$$(echo "$$line" | cut -d: -f1); \
+			hex=$$(echo "$$line" | cut -d: -f2 | xargs); \
+			if [ -n "$$hex" ]; then \
+				dec=$$(cast to-dec $$hex 2>/dev/null || echo "0"); \
+				gwei=$$(echo "scale=2; $$dec / 1000000000" | bc); \
+				echo "$$addr: $${gwei} gwei"; \
+			fi; \
+		done | sort -t: -k2 -rn; \
 	fi
 	@echo "════════════════════════════════════════"
 

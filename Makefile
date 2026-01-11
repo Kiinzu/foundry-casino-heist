@@ -4,7 +4,6 @@ TEST_TARGETS := \
 	basic_gearing-up \
 	basic_isolated \
 	basic_peek-a-slot \
-	common_after-you \
 	common_bar \
 	common_casino-vault \
 	common_cheap-glitch \
@@ -23,13 +22,17 @@ TEST_TARGETS := \
 	advance_casino-bankbuster \
 	advance_double-dipping \
 	advance_false-hope \
-	advance_salt-and-steel \
 	advance_the-waltz \
 	vip_bank-of-people \
 	vip_executive-problems \
 	vip_inju-gambit \
 	vip_ipwd \
 	vip_pupol-nft
+
+DEPLOYED_TEST_TARGETS =: \
+	common_after-you \
+	advance_salt-and-steel
+
 
 TEST_DEPLOYED_SOLVE := \
 	solve_advance_salt-and-steel
@@ -76,7 +79,7 @@ SHELL := /bin/bash
 TEST_ARGS := --mt testIfSolved $(VFLAG)
 
 # ----- Make List -----
-.PHONY: $(TEST_TARGETS) ${HELPER} ${TEST_DEPLOYED_SOLVE} test-all
+.PHONY: $(TEST_TARGETS) ${DEPLOYED_TEST_TARGETS} ${HELPER} ${TEST_DEPLOYED_SOLVE} test-all
 
 test-all:
 	@$(MAKE) -k VERBOSE=0 $(TEST_TARGETS)

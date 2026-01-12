@@ -27,12 +27,12 @@ This is the directory and its usage.
 1. Clone the Repository
 
 ```shell
-git clone https://github.com/Kiinzu/foundry-casino-heist.git`
-cd /foundry-casino-heist
-forge install foundry-rs/forge-std \
-  OpenZeppelin/openzeppelin-contracts \
-  OpenZeppelin/openzeppelin-contracts-upgradeable \
-  OpenZeppelin/openzeppelin-foundry-upgrade 
+$ git clone https://github.com/Kiinzu/foundry-casino-heist.git`
+$ cd /foundry-casino-heist
+$ forge install foundry-rs/forge-std \
+    OpenZeppelin/openzeppelin-contracts \
+    OpenZeppelin/openzeppelin-contracts-upgradeable \
+    OpenZeppelin/openzeppelin-foundry-upgrade 
 ```
 
 2. You will find the Challenge in the `/src` accordingly to their Category.

@@ -14,3 +14,6 @@ out/
 
 # Foundry
 foundry.lock
+
+# Lib
+lib/

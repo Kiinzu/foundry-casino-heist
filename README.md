@@ -13,9 +13,7 @@ What you need to prepare:
 1. [Foundry](https://book.getfoundry.sh/)
 2. Snacks 🍫🍪
 
-All the libraries such as [Openzepplin Contracts](https://docs.openzeppelin.com/upgrades-plugins/foundry-upgrades) is already included in the GitHub Repository.
-
-## Mini-Guide
+Mini-Guide
 
 This is the directory and its usage.
 
@@ -31,7 +29,10 @@ This is the directory and its usage.
 ```shell
 git clone https://github.com/Kiinzu/foundry-casino-heist.git`
 cd /foundry-casino-heist
-forge install
+forge install foundry-rs/forge-std \
+  OpenZeppelin/openzeppelin-contracts \
+  OpenZeppelin/openzeppelin-contracts-upgradeable \
+  OpenZeppelin/openzeppelin-foundry-upgrade 
 ```
 
 2. You will find the Challenge in the `/src` accordingly to their Category.
@@ -98,7 +99,7 @@ $ make solve_basic_briefing
 
 7. That's it! You good to go.
 
-## Make List 
+## Make List
 
 Some challenges in Casino Heist are designed to be played on a **deployed Anvil Instance** using Foundry, while others can be solved in test mode or in their **deployed form**.
 

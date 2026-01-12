@@ -27,7 +27,7 @@ This is the directory and its usage.
 1. Clone the Repository
 
 ```shell
-$ git clone https://github.com/Kiinzu/foundry-casino-heist.git`
+$ git clone https://github.com/Kiinzu/foundry-casino-heist.git
 $ cd /foundry-casino-heist
 $ forge install foundry-rs/forge-std \
     OpenZeppelin/openzeppelin-contracts \

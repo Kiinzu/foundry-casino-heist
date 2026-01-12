@@ -59,7 +59,7 @@ $ forge install foundry-rs/forge-std \
 
 ⚠️ - **Do Not Change the Setup for player!**
 
-5. To Test if the challenge is solved, simply run `make` - Since there are challenges that can be deployed and challenge that can be solve only using the Testfile, there are different way to play and solve the challenge
+5. To Test if the challenge is solved, simply run `make`, see `Make List` for more information
 
 ```shell
 # Example of Foundry Test Challenge
@@ -96,7 +96,7 @@ $ make solve_basic_briefing
   [!] Please create another instance by calling: 'make deploy_basic_briefing'
 ```
 
-7. That's it! You good to go.
+6. That's it! You good to go.
 
 ## Make List
 

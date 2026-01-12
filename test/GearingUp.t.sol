@@ -27,7 +27,6 @@ contract GearingUpTest is Test{
 
         // Write Exploit here
 
-
         vm.stopPrank();
         assertEq(challSetup.isSolved(), true);
     }

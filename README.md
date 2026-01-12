@@ -59,15 +59,81 @@ forge install
 
 ⚠️ - **Do Not Change the Setup for player!**
 
-5. To Test if the challenge is solved, simply run `make` 
+5. To Test if the challenge is solved, simply run `make` - Since there are challenges that can be deployed and challenge that can be solve only using the Testfile, there are different way to play and solve the challenge
 
 ```shell
-# Example for vip_bank-of-people
-make vip_bank-of-people
+# Example of Foundry Test Challenge
+# Example for vip_bank-of-people (Test)
 
-# OR
-# Example for all challenge test
-make test-all
+$ make vip_bank-of-people
+
+# Example of Deployed Challenge (Anvil)
+# Example for deploy_basic_briefing
+# Deploying Briefing in Local Anvil, will return credential for player
+
+$ make deploy_basic_briefing 
+> == Logs ==
+  ========== DEPLOYING SETUP ==========
+  Setup deployed at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+  ====================================
+  
+  ========== PLAYER SETUP ==========
+  Player Address    :  0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+  Player Private Key:  40606737760334725431406512677033654118342507952694270066784247067953537247501
+  Player Balance    :  1 ether
+  ====================================
+
+$ make solve_basic_briefing
+> == Logs ==
+    ========== CHECKING SOLUTION ==========
+    Setup at          :  0x5FbDB2315678afecb367f032d93F642f64180aa3
+    First Celebrator  :  0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+    Balance of Express:  0
+    STATUS: NOT SOLVED
+    ========================================
+  [X] Challenge not solved yet
+  [!] Destroying the Challenge Instance
 ```
 
 7. That's it! You good to go.
+
+## Make List 
+
+Some challenges in Casino Heist are designed to be played on a **deployed Anvil Instance** using Foundry, while others can be solved in test mode or in their **deployed form**.
+
+The table below litst the available modes for each challenge — **deployed**, **test**, or **both** — along with the **recommended way to play** each challenge.
+
+| ///////////////////// | Test                         | Deployed                | Recommended |
+| --------------------- | ---------------------------- | ----------------------- | ----------- |
+| Briefing              | basic_briefing               | deploy_basic_briefing   |             |
+| Bulls Eye             | basic_bulls-eye              |                         |             |
+| Gearing Up            | basic_gearing-up             | deploy_basic_gearing-up |             |
+| Isolated              | basic_isolated               |                         |             |
+| Peek A Slot           | basic_peek-a-slot            |                         |             |
+| After You             | -                            | common_after-you        |             |
+| Bar                   | common_bar                   |                         |             |
+| Casino Vault          | common_casino-vault          |                         |             |
+| Cheap Glitch          | common_cheap-glitch          |                         |             |
+| Entry Point           | common_entry-point           |                         |             |
+| Gorengan              | common_gorengan              |                         |             |
+| Inju Bank             | common_inju-bank             |                         |             |
+| Master of Blackjack   | common_master-of-blackjack   |                         |             |
+| Roulette              | common_roulette              |                         |             |
+| Silent Dealer         | common_silent-dealer         |                         |             |
+| Singular Identity     | common_singular-identity     |                         |             |
+| Symbol of Noble       | common_symbol-of-noble       |                         |             |
+| Take My Money         | common_take-my-money         |                         |             |
+| Unlimited Credit Line | common_unlimited-credit-line |                         |             |
+| Voting Frenzy         | common_voting-frenzy         |                         |             |
+| VVVIP Member          | common_vvvip-member          |                         |             |
+| Casino Bankbuster     | advance_casino-bankbuster    |                         |             |
+| Double Dipping        | advance_double-dipping       |                         |             |
+| False Hope            | advance_false-hope           |                         |             |
+| Guardian              | advance_guardian             |                         |             |
+| Salt and Steel        | -                            | advance_salt-and-steel  |             |
+| The Waltz             | advance_the-waltz            |                         |             |
+| Bank of People        | vip_bank-of-people           |                         |             |
+| Executive Problems    | vip_executive-problems       |                         |             |
+| Inju's Gambit         | vip_inju-gambit              |                         |             |
+| IPWD                  | vip_ipwd                     |                         |             |
+| Pupol BFT             | vip_pupol-nft                |                         |             |

@@ -30,6 +30,7 @@ TEST_TARGETS := \
 	vip_pupol-nft
 
 DEPLOYED_TEST_TARGETS := \
+	deploy_basic_gearing-up \
 	common_after-you \
 	advance_salt-and-steel
 
@@ -69,6 +70,8 @@ ANVIL_LOG := ${ANVIL_DIR}/anvil.log
 ANVIL_CHAIN_ID ?= 31337
 ANVIL_HARDFORK ?= prague
 MANUAL_MINING ?= false
+
+PLAYER_ADDR := 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
 # ----- SHELL -----
 SHELL := /bin/bash
@@ -152,7 +155,6 @@ anvil_stop:
 	@-lsof -ti tcp:$(ANVIL_PORT) 2>/dev/null | xargs kill 2>/dev/null || true
 	@-pkill anvil 2>/dev/null || true
 	@rm -f $(ANVIL_DIR)/*
-	@rm -f $()
 	@echo "[o] Anvil stopped."
 
 anvil_mine:
@@ -262,18 +264,37 @@ _script_solver:
 		echo "[*] Cleaned up .anvil directory"; \
 		$(MAKE) _anvil_stop; \
 	else \
-		echo "✗ Challenge not solved yet"; \
-		echo "Anvil still running at $(RPC_URL)"; \
-		echo "Run 'make _anvil_stop' when done"; \
+		echo "[X] Challenge not solved yet"; \
+		echo "[!] Destroying the Challenge Instance"; \
+		$(MAKE) _anvil_stop; \
+		echo "[!] Please create another instance by calling: "make $(LAST_COMMAND)""; \
 	fi
 
 # ----- Deployed Solve -----
-solve_advance_salt-and-steel: CHALLENGE=salt-and-steel
-solve_advance_salt-and-steel: _script_solver
+solve_basic_gearing-up: CHALLENGE=gearing-up
+solve_basic_gearing-up: LAST_COMMAND=deploy_basic_gearing-up
+solve_basic_gearing-up: _script_solver
 
 solve_common_after-you: CHALLENGE=after-you
+solve_common_after-you: LAST_COMMAND=common_after-you
 solve_common_after-you: anvil_tx_summary anvil_mine
 solve_common_after-you: _script_solver
+
+solve_advance_salt-and-steel: CHALLENGE=salt-and-steel
+solve_advance_salt-and-steel: LAST_COMMAND=advance_salt-and-steel
+solve_advance_salt-and-steel: _script_solver
+
+
+# ----- Deployable Challenge -----
+deploy_basic_gearing-up: _anvil_start
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_basic_gearing-up' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@cast rpc anvil_setBalance ${PLAYER_ADDR} $$(cast to-wei 7 ether | cast to-hex) --rpc-url $(RPC_URL)
+	@forge script script/gearing-up/Deploy.s.sol:DeployScript \
+		--rpc-url ${RPC_URL} \
+		--broadcast \
+		|| (echo "[-] Deployment Failed" && $(MAKE) _anvil_stop && exit 1)
 
 # ----- Basic Challenge -----
 basic_briefing:
@@ -301,6 +322,8 @@ common_after-you: _anvil_start
 	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
 	@echo "[*] Use 'make solve_common_after-you' to check for solve (if true, it will stop anvil automatically)- or,"
 	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@cast rpc anvil_setBalance ${PLAYER_ADDR} $$(cast to-wei 1 ether | cast to-hex) --rpc-url $(RPC_URL)
+	@cast rpc anvil_setBalance 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC $$(cast to-wei 1 ether | cast to-hex) --rpc-url $(RPC_URL)
 	@echo "[*] Running Deploy script (mining in 2 seconds)..."
 	@(sleep 10 && $(MAKE) anvil_mine) & \
 	forge script script/after-you/Deploy.s.sol:DeployScript \

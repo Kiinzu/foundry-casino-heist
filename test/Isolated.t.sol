@@ -13,7 +13,8 @@ contract IsolatedTest is Test{
 
     function setUp() public {
         vm.startPrank(deployer.addr, deployer.addr);
-        challSetup = new Setup();
+        vm.deal(deployer.addr, 10 ether);
+        challSetup = new Setup{value: 10 ether}();
         vm.stopPrank();
     }
 

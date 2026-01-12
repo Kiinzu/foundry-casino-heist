@@ -29,7 +29,7 @@ TEST_TARGETS := \
 	vip_ipwd \
 	vip_pupol-nft
 
-DEPLOYED_TEST_TARGETS =: \
+DEPLOYED_TEST_TARGETS := \
 	common_after-you \
 	advance_salt-and-steel
 
@@ -287,7 +287,7 @@ basic_gearing-up:
 	forge test --mp test/GearingUp.t.sol $(TEST_ARGS)
 
 basic_isolated:
-	forge test --mp test/Isolated.t.sol $(TEST_ARGS)
+	forge test --mp test/Isolated.t.sol $(TEST_ARGS) --gas-limit 18446744073709551615
 
 basic_peek-a-slot:
 	SEED=0x$$(openssl rand -hex 32) \

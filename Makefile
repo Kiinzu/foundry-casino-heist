@@ -267,7 +267,7 @@ _script_solver:
 		echo "[X] Challenge not solved yet"; \
 		echo "[!] Destroying the Challenge Instance"; \
 		$(MAKE) _anvil_stop; \
-		echo "[!] Please create another instance by calling: "make $(LAST_COMMAND)""; \
+		echo "[!] Please create another instance by calling: 'make $(LAST_COMMAND)'"; \
 	fi
 
 # ----- Deployed Solve -----

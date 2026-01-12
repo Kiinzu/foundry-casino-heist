@@ -64,13 +64,11 @@ forge install
 ```shell
 # Example of Foundry Test Challenge
 # Example for vip_bank-of-people (Test)
-
 $ make vip_bank-of-people
 
 # Example of Deployed Challenge (Anvil)
 # Example for deploy_basic_briefing
 # Deploying Briefing in Local Anvil, will return credential for player
-
 $ make deploy_basic_briefing 
 > == Logs ==
   ========== DEPLOYING SETUP ==========
@@ -93,6 +91,9 @@ $ make solve_basic_briefing
     ========================================
   [X] Challenge not solved yet
   [!] Destroying the Challenge Instance
+  [!] Stopping Anvil...
+  [o] Anvil stopped.  
+  [!] Please create another instance by calling: 'make deploy_basic_briefing'
 ```
 
 7. That's it! You good to go.
@@ -105,35 +106,35 @@ The table below litst the available modes for each challenge — **deployed**, *
 
 | ///////////////////// | Test                         | Deployed                | Recommended |
 | --------------------- | ---------------------------- | ----------------------- | ----------- |
-| Briefing              | basic_briefing               | deploy_basic_briefing   |             |
-| Bulls Eye             | basic_bulls-eye              |                         |             |
-| Gearing Up            | basic_gearing-up             | deploy_basic_gearing-up |             |
-| Isolated              | basic_isolated               |                         |             |
-| Peek A Slot           | basic_peek-a-slot            |                         |             |
-| After You             | -                            | common_after-you        |             |
-| Bar                   | common_bar                   |                         |             |
-| Casino Vault          | common_casino-vault          |                         |             |
-| Cheap Glitch          | common_cheap-glitch          |                         |             |
-| Entry Point           | common_entry-point           |                         |             |
-| Gorengan              | common_gorengan              |                         |             |
-| Inju Bank             | common_inju-bank             |                         |             |
-| Master of Blackjack   | common_master-of-blackjack   |                         |             |
-| Roulette              | common_roulette              |                         |             |
-| Silent Dealer         | common_silent-dealer         |                         |             |
-| Singular Identity     | common_singular-identity     |                         |             |
-| Symbol of Noble       | common_symbol-of-noble       |                         |             |
-| Take My Money         | common_take-my-money         |                         |             |
-| Unlimited Credit Line | common_unlimited-credit-line |                         |             |
-| Voting Frenzy         | common_voting-frenzy         |                         |             |
-| VVVIP Member          | common_vvvip-member          |                         |             |
-| Casino Bankbuster     | advance_casino-bankbuster    |                         |             |
-| Double Dipping        | advance_double-dipping       |                         |             |
-| False Hope            | advance_false-hope           |                         |             |
-| Guardian              | advance_guardian             |                         |             |
-| Salt and Steel        | -                            | advance_salt-and-steel  |             |
-| The Waltz             | advance_the-waltz            |                         |             |
-| Bank of People        | vip_bank-of-people           |                         |             |
-| Executive Problems    | vip_executive-problems       |                         |             |
-| Inju's Gambit         | vip_inju-gambit              |                         |             |
-| IPWD                  | vip_ipwd                     |                         |             |
-| Pupol BFT             | vip_pupol-nft                |                         |             |
+| Briefing              | basic_briefing               | deploy_basic_briefing   | TBA         |
+| Bulls Eye             | basic_bulls-eye              |                         | TBA         |
+| Gearing Up            | basic_gearing-up             | deploy_basic_gearing-up | TBA         |
+| Isolated              | basic_isolated               |                         | TBA         |
+| Peek A Slot           | basic_peek-a-slot            |                         | TBA         |
+| After You             | -                            | common_after-you        | TBA         |
+| Bar                   | common_bar                   |                         | TBA         |
+| Casino Vault          | common_casino-vault          |                         | TBA         |
+| Cheap Glitch          | common_cheap-glitch          |                         | TBA         |
+| Entry Point           | common_entry-point           |                         | TBA         |
+| Gorengan              | common_gorengan              |                         | TBA         |
+| Inju Bank             | common_inju-bank             |                         | TBA         |
+| Master of Blackjack   | common_master-of-blackjack   |                         | TBA         |
+| Roulette              | common_roulette              |                         | TBA         |
+| Silent Dealer         | common_silent-dealer         |                         | TBA         |
+| Singular Identity     | common_singular-identity     |                         | TBA         |
+| Symbol of Noble       | common_symbol-of-noble       |                         | TBA         |
+| Take My Money         | common_take-my-money         |                         | TBA         |
+| Unlimited Credit Line | common_unlimited-credit-line |                         | TBA         |
+| Voting Frenzy         | common_voting-frenzy         |                         | TBA         |
+| VVVIP Member          | common_vvvip-member          |                         | TBA         |
+| Casino Bankbuster     | advance_casino-bankbuster    |                         | TBA         |
+| Double Dipping        | advance_double-dipping       |                         | TBA         |
+| False Hope            | advance_false-hope           |                         | TBA         |
+| Guardian              | advance_guardian             |                         | TBA         |
+| Salt and Steel        | -                            | advance_salt-and-steel  | TBA         |
+| The Waltz             | advance_the-waltz            |                         | TBA         |
+| Bank of People        | vip_bank-of-people           |                         | TBA         |
+| Executive Problems    | vip_executive-problems       |                         | TBA         |
+| Inju's Gambit         | vip_inju-gambit              |                         | TBA         |
+| IPWD                  | vip_ipwd                     |                         | TBA         |
+| Pupol BFT             | vip_pupol-nft                |                         | TBA         |

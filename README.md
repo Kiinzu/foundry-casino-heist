@@ -13,7 +13,7 @@ What you need to prepare:
 1. [Foundry](https://book.getfoundry.sh/)
 2. Snacks 🍫🍪
 
-Mini-Guide
+## Mini-Guide
 
 This is the directory and its usage.
 

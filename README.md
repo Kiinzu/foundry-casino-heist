@@ -31,8 +31,7 @@ $ git clone https://github.com/Kiinzu/foundry-casino-heist.git
 $ cd /foundry-casino-heist
 $ forge install foundry-rs/forge-std \
     OpenZeppelin/openzeppelin-contracts \
-    OpenZeppelin/openzeppelin-contracts-upgradeable \
-    OpenZeppelin/openzeppelin-foundry-upgrade 
+    OpenZeppelin/openzeppelin-contracts-upgradeable
 ```
 
 2. You will find the Challenge in the `/src` accordingly to their Category.

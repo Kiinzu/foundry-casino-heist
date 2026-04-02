@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// EVM Version: latest (Prague)
 pragma solidity ^0.8.25;
 
 import "./Bar.sol";

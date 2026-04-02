@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+// EVM Version: latest (Prague)
 pragma solidity 0.8.30;
 
 contract Setup{

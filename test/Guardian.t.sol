@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
+// EVM Version: prague
 pragma solidity ^0.8.30;
 
 import "forge-std/Test.sol";

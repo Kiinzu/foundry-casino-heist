@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: NQDU
+// EVM Version: prague
 pragma solidity 0.8.29;
 
 import {BankOfPeople} from "./BankOfPeople.sol";

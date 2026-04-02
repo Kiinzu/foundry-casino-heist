@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: Kiinzu
+// EVM Version: latest (Prague)
 pragma solidity 0.8.28;
 
 import { Hope } from "./Hope.sol";

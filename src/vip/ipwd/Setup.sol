@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: INJU
+// EVM Version: latest (Prague)
 pragma solidity ^0.8.28;
 
 import "./IPWD.sol";

@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
+// EVM Version: latest (Prague)
 pragma solidity ^0.8.26;
 
 import "./EntryPoint.sol";

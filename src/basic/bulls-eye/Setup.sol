@@ -1,3 +1,4 @@
+// EVM Version: latest (Prague)
 pragma solidity ^0.8.30;
 
 import "./Range.sol";

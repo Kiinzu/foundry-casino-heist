@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// EVM Version: latest (Prague)
 pragma solidity ^0.8.26;
 
 import "./Capitol.sol";

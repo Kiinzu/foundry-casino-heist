@@ -14,6 +14,7 @@ contract Express{
         string memory _congratulate,
         uint8 _guess
     ) external {
+        if(firstToCelebrate != address(0)) revert();
         if(
             keccak256(abi.encodePacked("Happy Birthday Bob!")) != keccak256(abi.encodePacked(_congratulate))
         ) revert wrongParty();

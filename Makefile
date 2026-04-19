@@ -76,6 +76,7 @@ ANVIL_LOG := ${ANVIL_DIR}/anvil.log
 ANVIL_CHAIN_ID ?= 31337
 ANVIL_HARDFORK ?= prague
 MANUAL_MINING ?= false
+ANVIL_ORDER ?= fifo
 
 PLAYER_ADDR := 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
 
@@ -102,13 +103,14 @@ _anvil_start: _ensure_dirs
 	@-pkill anvil 2>/dev/null || true
 	@-lsof -ti tcp:$(ANVIL_PORT) 2>/dev/null | xargs kill 2>/dev/null || true
 	@sleep 1
-	@echo "[!] Starting Anvil on $(RPC_URL) (hardfork=$(ANVIL_HARDFORK), manual_mining=$(MANUAL_MINING))..."
+	@echo "[!] Starting Anvil on $(RPC_URL) (hardfork=$(ANVIL_HARDFORK), manual_mining=$(MANUAL_MINING), order=$(ANVIL_ORDER))..."
 	@if [ "$(MANUAL_MINING)" = "true" ]; then \
 		anvil \
 			--port $(ANVIL_PORT) \
 			--hardfork $(ANVIL_HARDFORK) \
 			--chain-id $(ANVIL_CHAIN_ID) \
 			--no-mining \
+			--order $(ANVIL_ORDER) \
 			> $(ANVIL_LOG) 2>&1 & \
 		echo $$! > $(ANVIL_PID); \
 	else \
@@ -116,6 +118,7 @@ _anvil_start: _ensure_dirs
 			--port $(ANVIL_PORT) \
 			--hardfork $(ANVIL_HARDFORK) \
 			--chain-id $(ANVIL_CHAIN_ID) \
+			--order $(ANVIL_ORDER) \
 			> $(ANVIL_LOG) 2>&1 & \
 		echo $$! > $(ANVIL_PID); \
 	fi
@@ -367,6 +370,7 @@ basic_peek-a-slot:
 
 # ---- Common Challenge -----
 common_after-you: MANUAL_MINING=true
+common_after-you: ANVIL_ORDER=fees
 common_after-you: _anvil_start
 	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
 	@echo "[*] Use 'make solve_common_after-you' to check for solve (if true, it will stop anvil automatically)- or,"

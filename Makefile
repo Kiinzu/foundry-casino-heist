@@ -384,7 +384,7 @@ common_symbol-of-noble:
 	forge test --mp test/SymbolOfNoble.t.sol $(TEST_ARGS)
 
 common_take-my-money:
-	FOUNDRY_PROFILE=shanghai \
+	FOUNDRY_PROFILE=london \
 	forge test --mp test/TakeMyMoney.t.sol $(TEST_ARGS)
 
 common_unlimited-credit-line:

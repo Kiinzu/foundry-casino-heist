@@ -38,7 +38,9 @@ $ forge install foundry-rs/forge-std \
 
    - Basic (Introductory)
    - Common (Common Vulnerabilities)
+   - Advance (Advance?)
    - VIP (Easier Stuff, trust me)
+  
 3. You will find all the test in one folder `/test` (Basic, Common, VIP in one place).
 4. Some might require you to write Exploit Contract, some you can just edit the Test Directly. There will be `// Write Exploit Here`, that's the only place you should edit and some may include `vm.warp()`, you might also want to change this if you think you need it.
 
@@ -104,37 +106,37 @@ Some challenges in Casino Heist are designed to be played on a **deployed Anvil 
 
 The table below litst the available modes for each challenge — **deployed**, **test**, or **both** — along with the **recommended way to play** each challenge.
 
-| ///////////////////// | Test                         | Deployed                | Recommended |
-| --------------------- | ---------------------------- | ----------------------- | ----------- |
-| Briefing              | basic_briefing               | deploy_basic_briefing   | TBA         |
-| Bulls Eye             | basic_bulls-eye              |                         | TBA         |
-| Gearing Up            | basic_gearing-up             | deploy_basic_gearing-up | TBA         |
-| Isolated              | basic_isolated               |                         | TBA         |
-| Peek A Slot           | basic_peek-a-slot            |                         | TBA         |
-| After You             | -                            | common_after-you        | TBA         |
-| Bar                   | common_bar                   |                         | TBA         |
-| Casino Vault          | common_casino-vault          |                         | TBA         |
-| Cheap Glitch          | common_cheap-glitch          |                         | TBA         |
-| Entry Point           | common_entry-point           |                         | TBA         |
-| Gorengan              | common_gorengan              |                         | TBA         |
-| Inju Bank             | common_inju-bank             |                         | TBA         |
-| Master of Blackjack   | common_master-of-blackjack   |                         | TBA         |
-| Roulette              | common_roulette              |                         | TBA         |
-| Silent Dealer         | common_silent-dealer         |                         | TBA         |
-| Singular Identity     | common_singular-identity     |                         | TBA         |
-| Symbol of Noble       | common_symbol-of-noble       |                         | TBA         |
-| Take My Money         | common_take-my-money         |                         | TBA         |
-| Unlimited Credit Line | common_unlimited-credit-line |                         | TBA         |
-| Voting Frenzy         | common_voting-frenzy         |                         | TBA         |
-| VVVIP Member          | common_vvvip-member          |                         | TBA         |
-| Casino Bankbuster     | advance_casino-bankbuster    |                         | TBA         |
-| Double Dipping        | advance_double-dipping       |                         | TBA         |
-| False Hope            | advance_false-hope           |                         | TBA         |
-| Guardian              | advance_guardian             |                         | TBA         |
-| Salt and Steel        | -                            | advance_salt-and-steel  | TBA         |
-| The Waltz             | advance_the-waltz            |                         | TBA         |
-| Bank of People        | vip_bank-of-people           |                         | TBA         |
-| Executive Problems    | vip_executive-problems       |                         | TBA         |
-| Inju's Gambit         | vip_inju-gambit              |                         | TBA         |
-| IPWD                  | vip_ipwd                     |                         | TBA         |
-| Pupol BFT             | vip_pupol-nft                |                         | TBA         |
+| ///////////////////// | Test                         | Deployed                            | Recommended |
+| --------------------- | ---------------------------- | ----------------------------------- | ----------- |
+| Briefing              | basic_briefing               | deploy_basic_briefing               | Deployed    |
+| Bulls Eye             | basic_bulls-eye              | -                                   | Test        |
+| Gearing Up            | basic_gearing-up             | deploy_basic_gearing-up             | Test        |
+| Isolated              | basic_isolated               | -                                   | Test        |
+| Peek A Slot           | basic_peek-a-slot            | -                                   | Test        |
+| After You             | -                            | common_after-you                    | Deployed    |
+| Bar                   | common_bar                   | -                                   | Test        |
+| Casino Vault          | common_casino-vault          | -                                   | Test        |
+| Cheap Glitch          | common_cheap-glitch          | -                                   | Test        |
+| Entry Point           | common_entry-point           | -                                   | Test        |
+| Gorengan              | common_gorengan              | -                                   | Test        |
+| Inju Bank             | common_inju-bank             | -                                   | Test        |
+| Master of Blackjack   | common_master-of-blackjack   | deploy_common_master-of-blackjack   | Deployed    |
+| Roulette              | common_roulette              | deploy_common_roulette              | Deployed    |
+| Silent Dealer         | common_silent-dealer         | -                                   | Test        |
+| Singular Identity     | common_singular-identity     | -                                   | Test        |
+| Symbol of Noble       | common_symbol-of-noble       | -                                   | Test        |
+| Take My Money         | common_take-my-money         | -                                   | Test        |
+| Unlimited Credit Line | common_unlimited-credit-line | -                                   | Test        |
+| Voting Frenzy         | common_voting-frenzy         | -                                   | Test        |
+| VVVIP Member          | common_vvvip-member          | -                                   | Test        |
+| Casino Bankbuster     | advance_casino-bankbuster    | -                                   | Test        |
+| Double Dipping        | advance_double-dipping       | -                                   | Test        |
+| False Hope            | advance_false-hope           | -                                   | Test        |
+| Guardian              | advance_guardian             | -                                   | Test        |
+| Salt and Steel        | -                            | advance_salt-and-steel              | Deployed    |
+| The Waltz             | advance_the-waltz            | -                                   | Test        |
+| Bank of People        | vip_bank-of-people           | -                                   | Test        |
+| Executive Problems    | vip_executive-problems       | -                                   | Test        |
+| Inju's Gambit         | vip_inju-gambit              | -                                   | Test        |
+| IPWD                  | vip_ipwd                     | -                                   | Test        |
+| Pupol BFT             | vip_pupol-nft                | -                                   | Test        |

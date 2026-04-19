@@ -30,12 +30,18 @@ TEST_TARGETS := \
 	vip_pupol-nft
 
 DEPLOYED_TEST_TARGETS := \
+	deploy_basic_briefing \
 	deploy_basic_gearing-up \
+	deploy_common_master-of-blackjack \
+	deploy_common_roulette \
 	common_after-you \
 	advance_salt-and-steel
 
 
 TEST_DEPLOYED_SOLVE := \
+	solve_basic_briefing \
+	solve_common_master-of-blackjack \
+	solve_common_roulette \
 	solve_advance_salt-and-steel
 
 HELPER := \
@@ -271,6 +277,18 @@ _script_solver:
 	fi
 
 # ----- Deployed Solve -----
+solve_basic_briefing: CHALLENGE=briefing
+solve_basic_briefing: LAST_COMMAND=deploy_basic_briefing
+solve_basic_briefing: _script_solver
+
+solve_common_master-of-blackjack: CHALLENGE=master-of-blackjack
+solve_common_master-of-blackjack: LAST_COMMAND=deploy_common_master-of-blackjack
+solve_common_master-of-blackjack: _script_solver
+
+solve_common_roulette: CHALLENGE=roulette
+solve_common_roulette: LAST_COMMAND=deploy_common_roulette
+solve_common_roulette: _script_solver
+
 solve_basic_gearing-up: CHALLENGE=gearing-up
 solve_basic_gearing-up: LAST_COMMAND=deploy_basic_gearing-up
 solve_basic_gearing-up: _script_solver
@@ -286,6 +304,37 @@ solve_advance_salt-and-steel: _script_solver
 
 
 # ----- Deployable Challenge -----
+deploy_common_roulette: _anvil_start
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_common_roulette' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@cast rpc anvil_setBalance ${PLAYER_ADDR} $$(cast to-wei 1 ether | cast to-hex) --rpc-url $(RPC_URL)
+	@forge script script/roulette/Deploy.s.sol:DeployScript \
+		--rpc-url ${RPC_URL} \
+		--broadcast \
+		|| (echo "[-] Deployment Failed" && $(MAKE) _anvil_stop && exit 1)
+
+deploy_common_master-of-blackjack: _anvil_start
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_common_master-of-blackjack' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@cast rpc anvil_setBalance ${PLAYER_ADDR} $$(cast to-wei 1 ether | cast to-hex) --rpc-url $(RPC_URL)
+	@forge script script/master-of-blackjack/Deploy.s.sol:DeployScript \
+		--rpc-url ${RPC_URL} \
+		--broadcast \
+		|| (echo "[-] Deployment Failed" && $(MAKE) _anvil_stop && exit 1)
+
+deploy_basic_briefing: _anvil_start
+	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
+	@echo "[*] Use 'make solve_basic_briefing' to check for solve (if true, it will stop anvil automatically)- or,"
+	@echo "[*] Use 'make anvil_stop' to stop Anvil manually"
+	@cast rpc anvil_setBalance ${PLAYER_ADDR} $$(cast to-wei 10 ether | cast to-hex) --rpc-url $(RPC_URL)
+	@SECRET_PHRASE=0x$$(openssl rand -hex 32) \
+	forge script script/briefing/Deploy.s.sol:DeployScript \
+		--rpc-url ${RPC_URL} \
+		--broadcast \
+		|| (echo "[-] Deployment Failed" && $(MAKE) _anvil_stop && exit 1)
+
 deploy_basic_gearing-up: _anvil_start
 	@echo "[*] Anvil is running on $(RPC_URL) with $(ANVIL_HARDFORK) hardfork"
 	@echo "[*] Use 'make solve_basic_gearing-up' to check for solve (if true, it will stop anvil automatically)- or,"

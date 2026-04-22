@@ -33,8 +33,7 @@ echo ""
 echo "[*] Installing required libraries..."
 forge install foundry-rs/forge-std \
     OpenZeppelin/openzeppelin-contracts \
-    OpenZeppelin/openzeppelin-contracts-upgradeable \
-    --no-commit
+    OpenZeppelin/openzeppelin-contracts-upgradeable
 echo "[✓] Libraries installed."
 
 # ── 4. Build to confirm everything compiles ───────────────────────────────────
